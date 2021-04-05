@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-image: url("https://images.unsplash.com/uploads/14116941824817ba1f28e/78c8dff1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=933&q=80");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+
+        }
+
+
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+
+
+
+        #clock {
+
+            width: 300px;
+            height: 300px;
+            background-image: url("./clock2.png");
+            border-radius: 50%;
+            position: relative;
+            margin: auto;
+            animation: move 4s steps(4, start) infinite;
+
+        }
+
+        #hour {
+
+            width: 20%;
+            height: 4px;
+
+            border-radius: 5px;
+
+            position: absolute;
+            /*css calc 計算的函式 運算符號前後要空白 */
+            top: calc(50% - 2px);
+            left: 50%;
+            transform-origin: left center;
+
+
+        }
+
+        #minute {
+            width: 40%;
+            height: 4px;
+            border-radius: 5px;
+            /* background: gray; */
+            position: absolute;
+
+            top: calc(50% - 2px);
+            left: 50%;
+            transform-origin: left center;
+
+        }
+
+        #second {
+            width: 40%;
+            height: 2px;
+
+            background: rgb(65, 62, 62);
+            position: absolute;
+
+            top: calc(50% - 2px);
+            left: 50%;
+            transform-origin: left center;
+
+        }
+
+        #a {
+            color: whitesmoke;
+            position: absolute;
+            top: 75%;
+            text-align: center;
+            font-size: 40px;
+            font-family: 'New Tegomin', serif;
+            font-weight: bold;
+        }
+
+        #btn {
+            position: absolute;
+            top: 75%;
+            background: rgba(red, green, blue, 0.8);
+            /* color: chocolate; */
+            font-size: 30px;
+            font-family: 'New Tegomin', serif;
+            width: 200px;
+            background: rgb(247, 150, 192);
+            background: radial-gradient(circle, rgba(247, 150, 192, 1) 0%, rgba(118, 174, 241, 1) 100%);
+            line-height: 42px;
+            padding: 0;
+            border: solid 2px;
+
+        }
+
+        .btn:hover {
+            color: whitesmoke;
+            box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .5),
+                inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+                inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+        }
+
+
+
+
+        .p1 {
+            /* top: 30%;
+            transform-origin: left center; */
+            top: -5px;
+            left: -5px;
+            position: absolute;
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="clock">
+        <div id="hour"><img class="p1" src="./ho.png" height="300%" width="150%"></div>
+        <div id="minute"><img class="p1" src="./mi.png" height="300%" width="100%"></div>
+        <div id="second"></div>
+
+    </div>
+    <p id='a'></p>
+    <input id="btn" class="btn" type="button" value="Click me">
+
+
+
+
+
+
+
+
+    <script>
+
+        const hour = document.getElementById('hour')
+        const minute = document.getElementById('minute')
+        const second = document.getElementById('second')
+
+        const update = () => {
+            const now = new Date()
+            hour.style.transform = `rotate(${now.getHours() * 30 - 90}deg)`
+            minute.style.transform = `rotate(${now.getMinutes() * 6 - 90}deg)`
+            second.style.transform = `rotate(${now.getSeconds() * 6 - 90}deg)`
+        }
+
+        setInterval(update, 1000)
+        update()
+
+        document.write('<br>')
+
+        const a = document.getElementById('a')
+        const now = new Date()
+
+
+        const btn = document.getElementById("btn");
+        btn.onclick = function () {
+            setInterval(() => {
+                a.innerText = new Date().toLocaleString()
+            });
+
+        }
+
+
+            // https://codepen.io/yuhomyan/pen/OJMejWJ
+            // https://dribbble.com/tags/clock_ui
+
+
+
+
+    </script>
+</body>
+
+</html>
